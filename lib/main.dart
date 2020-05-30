@@ -33,13 +33,22 @@ class _ApiFlutterState extends State<ApiFlutter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutte Api'),
-      ),
-      body: Center(
-        child: Text('Some data'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Flutte Api'),
+        ),
+        body: FutureBuilder(
+          future: futureAlbum,
+          builder: (ctx, snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data.title);
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+
+            // By default, show a loading spinner.
+            return CircularProgressIndicator();
+          },
+        ));
   }
 }
 
