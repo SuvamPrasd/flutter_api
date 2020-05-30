@@ -41,7 +41,7 @@ Future<Album> fetchAlbum() async {
 
   if (response.statusCode == 200) {
     return Album.fromJson(json.decode(response.body));
-  }else{
-    throw Exception('Failed to load album')
+  } else {
+    throw Exception('Failed to load album');
   }
 }
