@@ -22,6 +22,14 @@ class ApiFlutter extends StatefulWidget {
 }
 
 class _ApiFlutterState extends State<ApiFlutter> {
+  Future<Album> futureAlbum;
+
+  @override
+  void initState() {
+    futureAlbum = fetchAlbum();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
