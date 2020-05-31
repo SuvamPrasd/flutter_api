@@ -44,7 +44,62 @@ class _ApiFlutterState extends State<ApiFlutter> {
           future: futureResult,
           builder: (ctx, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.title);
+              return SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            snapshot.data.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Text(
+                            snapshot.data.content,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 0.4,
+                              height: 1.5,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Image.network(
+                            snapshot.data.imageUrl,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (ctx, child, loadingProgrss) {
+                              if (loadingProgrss == null) {
+                                return child;
+                              }
+                              return Center(
+                                child: LinearProgressIndicator(
+                                  value: loadingProgrss.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgrss.cumulativeBytesLoaded /
+                                          loadingProgrss.expectedTotalBytes
+                                      : null,
+                                ),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
