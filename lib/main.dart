@@ -201,7 +201,7 @@ class _ApiFlutterState extends State<ApiFlutter> with TickerProviderStateMixin {
 
 Future<Album> fetchAlbum() async {
   const BASE_URL =
-      "https://api.nasa.gov/planetary/apod?api_key=gKLuukaxhBSWbNFPeeR7UcLC84ptiIPxWvScNJ2S";
+      "https://api.nasa.gov/planetary/apod?api_key=API-KEY";
   final response =
       await http.get('https://jsonplaceholder.typicode.com/albums/1');
 
