@@ -215,7 +215,7 @@ Future<Album> fetchAlbum() async {
 Future<Nasa> fetchData() async {
   final nasa = Nasa();
   const BASE_URL =
-      "https://api.nasa.gov/planetary/apod?api_key=gKLuukaxhBSWbNFPeeR7UcLC84ptiIPxWvScNJ2S";
+      "https://api.nasa.gov/planetary/apod?api_key=API-KEY";
   final response = await http.get(BASE_URL);
   if (response.statusCode == 200) {
     return nasa.fetchNasa(json.decode(response.body));
